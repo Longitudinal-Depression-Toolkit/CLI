@@ -1,0 +1,67 @@
+name: "Feature Request: Home Screen"
+description: Propose improvements to the Home screen content, actions, or first-run experience.
+title: "[FEAT][HOME] <title>"
+labels:
+  - feature
+  - stage:home
+assignees:
+  - simonprovost
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for Home screen changes:
+        tutorial flow, action cards, intro messaging, authors/inspiration panels, and navigation prompts.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I checked current Home actions in `config/home.json`.
+          required: true
+        - label: I can explain why this is a Home concern and not a stage-specific concern.
+          required: true
+  - type: dropdown
+    id: request-type
+    attributes:
+      label: Home request type
+      options:
+        - New Home action
+        - Tutorial step/content update
+        - Intro/UX text update
+        - Authors or inspirations content update
+        - Navigation hint/layout update
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem statement
+      description: What problem does this change solve for users?
+      placeholder: Describe the current pain point.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: What should change in the Home screen?
+      placeholder: Describe expected UI behavior and interaction flow.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: List concrete checks to validate completion.
+      placeholder: "Example: selected action appears in Home list and is executable with Enter."
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional notes
+      description: Optional links, mockups, or references.
+      placeholder: Optional.
+    validations:
+      required: false

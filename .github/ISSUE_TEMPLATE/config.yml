@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: LDT-Toolkit (main end-user repository)
+    url: https://github.com/Longitudinal-Depression-Toolkit/ldt-toolkit
+    about: For toolkit-level usage questions and full project documentation.
+  - name: LEAP Group
+    url: https://life-epi-psych.github.io
+    about: Research group homepage.

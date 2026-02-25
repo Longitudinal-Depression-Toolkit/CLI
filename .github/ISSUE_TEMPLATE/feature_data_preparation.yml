@@ -1,0 +1,67 @@
+name: "Feature Request: Data Preparation Screen"
+description: Propose a CLI feature for data preparation tools, presets, or screen flow.
+title: "[FEAT][DATA_PREPARATION] <title>"
+labels:
+  - feature
+  - stage:data_preparation
+assignees:
+  - simonprovost
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for Data Preparation screen requests:
+        tool surfacing, preset integration, prompt flow, and stage-level navigation.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I checked existing stage definitions in `config/data_preparation.json`.
+          required: true
+        - label: I identified whether this is a CLI UX change, toolkit bridge change, or both.
+          required: true
+  - type: dropdown
+    id: request-type
+    attributes:
+      label: Request type
+      options:
+        - Add new Data Preparation tool entry
+        - Add or update preset entry
+        - Improve prompting/parameter capture flow
+        - Improve stage navigation or summaries
+        - Improve bridge execution or output rendering
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Describe the study/task context and why this is needed.
+      placeholder: What are users trying to accomplish?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed CLI behavior
+      description: Explain the expected stage path, prompts, and execution behavior.
+      placeholder: Include command path, expected options, and resulting outputs.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: List concrete checks for successful implementation.
+      placeholder: Include expected command path behavior and output artifacts.
+    validations:
+      required: true
+  - type: textarea
+    id: risks
+    attributes:
+      label: Constraints or risks
+      description: Optional constraints (runtime, dependencies, compatibility).
+      placeholder: Optional.
+    validations:
+      required: false

@@ -1,0 +1,67 @@
+name: "Feature Request: Data Preprocessing Screen"
+description: Propose a CLI feature for data preprocessing tools, presets, or interaction flow.
+title: "[FEAT][DATA_PREPROCESSING] <title>"
+labels:
+  - feature
+  - stage:data_preprocessing
+assignees:
+  - simonprovost
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for Data Preprocessing screen requests:
+        tool accessibility, prompt UX, stage summaries, and execution flow.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I checked current tool and preset entries in `config/data_preprocessing.json`.
+          required: true
+        - label: I checked if a similar capability already exists in another stage.
+          required: true
+  - type: dropdown
+    id: request-type
+    attributes:
+      label: Request type
+      options:
+        - Add new preprocessing tool entry
+        - Update existing tool prompts/parameter UX
+        - Add or update preprocessing preset entry
+        - Improve stage navigation or run hints
+        - Improve bridge execution and result rendering
+    validations:
+      required: true
+  - type: textarea
+    id: current-state
+    attributes:
+      label: Current behavior
+      description: What happens today and where does it break down?
+      placeholder: Describe current flow and limitations.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: Describe desired interactive flow and command path.
+      placeholder: Include menu path, key prompts, and expected output.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: List the checks that should pass when complete.
+      placeholder: "Example: action is discoverable, prompt validates inputs, run succeeds."
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes:
+      label: Additional material
+      description: Optional logs, screenshots, or references.
+      placeholder: Optional.
+    validations:
+      required: false

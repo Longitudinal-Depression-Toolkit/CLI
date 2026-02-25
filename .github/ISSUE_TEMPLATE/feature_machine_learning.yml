@@ -1,0 +1,67 @@
+name: "Feature Request: Machine Learning Screen"
+description: Propose a CLI feature for machine learning tools, presets, or interaction flow.
+title: "[FEAT][MACHINE_LEARNING] <title>"
+labels:
+  - feature
+  - stage:machine_learning
+assignees:
+  - simonprovost
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for Machine Learning screen requests:
+        estimator workflow UX, benchmark flow, explainability tool flow, and preset surfacing.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I reviewed current entries in `config/machine_learning.json`.
+          required: true
+        - label: I can describe the expected outcome and generated artifacts.
+          required: true
+  - type: dropdown
+    id: request-type
+    attributes:
+      label: Request type
+      options:
+        - Add new machine-learning tool entry
+        - Improve prompts/parameter collection
+        - Add or update machine-learning preset entry
+        - Improve benchmark flow UX
+        - Improve result/diagnostic rendering
+    validations:
+      required: true
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+      description: What user objective should this screen change support?
+      placeholder: Describe the modeling task and expected user outcome.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed CLI flow
+      description: Describe stage path, prompts, and expected execution outputs.
+      placeholder: Include run path and output artifacts expected by the user.
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Validation criteria
+      description: How should maintainers verify this is done correctly?
+      placeholder: Include expected behavior, files, and terminal feedback.
+    validations:
+      required: true
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Constraints or risks
+      description: Optional runtime/dependency/compliance constraints.
+      placeholder: Optional.
+    validations:
+      required: false
