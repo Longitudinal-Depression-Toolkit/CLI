@@ -36,6 +36,7 @@ const (
 	bridgeRunnerModule    = "ldt.bridge.runner"
 	installationHelpHint  = "Run from a project directory containing pyproject.toml with `uv add ldt-toolkit`, then retry."
 	bridgeHintDelay       = 9 * time.Second
+	bridgeHintRotateEvery = 4 * time.Second
 	homeTabLabel          = "Home"
 	contentPanelMinWidth  = 64
 	contentPanelMinHeight = 12
@@ -937,7 +938,6 @@ type bridgeExecutionDoneMsg struct {
 type bridgeExecutionModel struct {
 	operation string
 	stopwatch stopwatch.Model
-	waitHint  components.RotatingHint
 	doneCh    <-chan bridgeExecutionDoneMsg
 	result    *bridgeExecutionDoneMsg
 }
@@ -1031,8 +1031,8 @@ func executeBridgeOperationWithStopwatch(
 		return parseBridgeExecutionResult(done.runErr, done.stdout, done.stderr)
 	}
 
-	model, ok := finalModel.(bridgeExecutionModel)
-	if !ok || model.result == nil {
+	model, ok := finalModel.(*bridgeExecutionModel)
+	if !ok || model == nil || model.result == nil {
 		done := <-doneCh
 		return parseBridgeExecutionResult(done.runErr, done.stdout, done.stderr)
 	}
@@ -1096,26 +1096,23 @@ func formatBridgeErrorMessage(message string) string {
 func newBridgeExecutionModel(
 	operation string,
 	doneCh <-chan bridgeExecutionDoneMsg,
-) bridgeExecutionModel {
+) *bridgeExecutionModel {
 	sw := stopwatch.NewWithInterval(time.Second)
-	hint := components.NewRotatingHint(bridgeWaitHints)
-	return bridgeExecutionModel{
+	return &bridgeExecutionModel{
 		operation: operation,
 		stopwatch: sw,
-		waitHint:  hint,
 		doneCh:    doneCh,
 	}
 }
 
-func (m bridgeExecutionModel) Init() tea.Cmd {
+func (m *bridgeExecutionModel) Init() tea.Cmd {
 	return tea.Batch(
 		m.stopwatch.Init(),
-		m.waitHint.Reset(),
 		waitBridgeExecutionCmd(m.doneCh),
 	)
 }
 
-func (m bridgeExecutionModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
+func (m *bridgeExecutionModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch typed := msg.(type) {
 	case bridgeExecutionDoneMsg:
 		m.result = &typed
@@ -1124,22 +1121,15 @@ func (m bridgeExecutionModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 	var stopwatchCmd tea.Cmd
 	m.stopwatch, stopwatchCmd = m.stopwatch.Update(msg)
-
-	_, hintCmd := m.waitHint.Update(msg)
-	return m, tea.Batch(stopwatchCmd, hintCmd)
+	return m, stopwatchCmd
 }
 
-func (m bridgeExecutionModel) View() string {
+func (m *bridgeExecutionModel) View() string {
 	action := strings.ReplaceAll(strings.TrimSpace(m.operation), ".", " / ")
 	if action == "" {
 		action = "bridge operation"
 	}
-	waitMessage := "Please wait..."
-	if m.stopwatch.Elapsed() > bridgeHintDelay {
-		if hint := strings.TrimSpace(m.waitHint.Display()); hint != "" {
-			waitMessage = hint
-		}
-	}
+	waitMessage := bridgeWaitStatusMessage(m.stopwatch.Elapsed())
 	content := lipgloss.JoinVertical(
 		lipgloss.Left,
 		"",
@@ -1149,6 +1139,25 @@ func (m bridgeExecutionModel) View() string {
 		"",
 	)
 	return components.ApplyLeftLayoutMargin(content)
+}
+
+func bridgeWaitStatusMessage(elapsed time.Duration) string {
+	const defaultMessage = "Please wait..."
+
+	if elapsed <= bridgeHintDelay || len(bridgeWaitHints) == 0 {
+		return defaultMessage
+	}
+
+	offset := elapsed - bridgeHintDelay
+	if offset < 0 {
+		return defaultMessage
+	}
+
+	index := int(offset / bridgeHintRotateEvery)
+	if index < 0 {
+		return defaultMessage
+	}
+	return bridgeWaitHints[index%len(bridgeWaitHints)]
 }
 
 func waitBridgeExecutionCmd(doneCh <-chan bridgeExecutionDoneMsg) tea.Cmd {
