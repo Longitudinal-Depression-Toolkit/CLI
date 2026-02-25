@@ -1053,7 +1053,7 @@ func parseBridgeExecutionResult(
 
 	if !envelope.OK {
 		if envelope.Error != nil {
-			return nil, fmt.Errorf("%s: %s", envelope.Error.Type, envelope.Error.Message)
+			return nil, fmt.Errorf("%s: %s", envelope.Error.Type, formatBridgeErrorMessage(envelope.Error.Message))
 		}
 		return nil, errors.New("bridge returned an unknown error")
 	}
@@ -1066,6 +1066,21 @@ func parseBridgeExecutionResult(
 		return map[string]any{}, nil
 	}
 	return envelope.Result, nil
+}
+
+func formatBridgeErrorMessage(message string) string {
+	trimmed := strings.TrimSpace(message)
+	if trimmed == "" {
+		return message
+	}
+
+	// Keep this generic: the toolkit now pins its own compatibility deps.
+	if strings.Contains(trimmed, "No module named 'pkg_resources'") ||
+		strings.Contains(trimmed, "No module named \"pkg_resources\"") {
+		return trimmed + "\nHint: sync project dependencies with `uv sync`, then retry."
+	}
+
+	return trimmed
 }
 
 func newBridgeExecutionModel(
