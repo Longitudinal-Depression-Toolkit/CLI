@@ -1,0 +1,63 @@
+{
+  "actions": [
+    {
+      "name": "toolkit_tutorial",
+      "display_name": "Toolkit tutorial",
+      "description": "Run the interactive toolkit tutorial."
+    },
+    {
+      "name": "list_authors",
+      "display_name": "List authors",
+      "description": "List first, second, et al authors."
+    },
+    {
+      "name": "list_inspiration_from",
+      "display_name": "List inspiration from",
+      "description": "List all papers inspiring this toolkit."
+    }
+  ],
+  "authors": [
+    {
+      "label": "1",
+      "text": "Simon Provost (Ph.D student University of Kent - https://orcid.org/0000-0001-8402-5464)"
+    },
+    {
+      "label": "2",
+      "text": "Bianca Branco (Ph.D student University of Edinburgh - https://orcid.org/0000-0003-0031-6200)"
+    },
+    {
+      "label": "3",
+      "text": "Alex Kwong (Wellcome Senior Research Fellow University of Edinburgh - https://orcid.org/0000-0003-1953-2771)"
+    }
+  ],
+  "inspirations": [
+    {
+      "label": "1",
+      "text": "Prediction of the trajectories of depressive symptoms among children in the adolescent brain cognitive development (ABCD) study using machine learning approach - https://doi.org/10.1016/j.jad.2022.05.020"
+    },
+    {
+      "label": "2",
+      "text": "Prediction models for longitudinal trajectories of depression and anxiety: a systematic review - https://doi.org/10.1016/j.jad.2026.121255"
+    }
+  ],
+  "tutorial_steps": [
+    {
+      "title": "Step 1 - Stage A (Data Preparation)",
+      "goal": "(1) Offer data preparation utilities to convert raw cohort data into formats needed downstream. (2) Offer reproducibility presets for available longitudinal studies.",
+      "outcome": "Output: prepared longitudinal dataset(s) ready for preprocessing.",
+      "recommendation": "If no built-in tool/preset fits your study, write your own script and consider opening a pull request."
+    },
+    {
+      "title": "Step 2 - Stage B (Data Preprocessing)",
+      "goal": "(1) Offer preprocessing utilities to build trajectories, merge data, and make datasets ML-ready. (2) Reproducibility presets for this stage are incoming.",
+      "outcome": "Output: trajectory-informed and preprocessing-validated dataset(s).",
+      "recommendation": "If no built-in tool/preset fits your study, implement your own workflow and consider opening a pull request."
+    },
+    {
+      "title": "Step 3 - Stage C (Machine Learning)",
+      "goal": "(1) Offer machine-learning utilities for longitudinal and standard estimators. (2) Offer reproducibility presets to rerun ML pipelines from available studies.",
+      "outcome": "Output: model artefacts and evaluation summaries ready to share.",
+      "recommendation": "If no built-in tool/preset fits your study, run your own ML pipeline and consider opening a pull request."
+    }
+  ]
+}

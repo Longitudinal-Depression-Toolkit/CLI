@@ -1,0 +1,148 @@
+{
+  "root_summary": "Choose between preprocessing tools and reproducibility presets.",
+  "tools_summary": "Main data preprocessing tools. Select one to configure and run.",
+  "presets_summary": "Browse reproducibility presets for data preprocessing.",
+  "tools": [
+    {
+      "id": "build_trajectories",
+      "name": "Build Trajectories",
+      "description": "Build longitudinal depressive symptoms trajectories from scratch or from saved model states.",
+      "node_summary": "Build subject-level trajectory assignments using trajectory modelling techniques.",
+      "subtitle": "Build trajectories for longitudinal depressive symptoms datasets. Press Esc to exit.",
+      "table_title": "Build Trajectories",
+      "selection_title": "Build trajectories action",
+      "catalog_operation": "data_preprocessing.build_trajectories.catalog",
+      "run_operation": "data_preprocessing.build_trajectories.run",
+      "status": "available"
+    },
+    {
+      "id": "combine_dataset_with_trajectories",
+      "name": "Combine Dataset with Trajectories",
+      "description": "Merge trajectory assignments with original datasets into a single modelling table.",
+      "node_summary": "Combine baseline/longitudinal datasets with trajectory labels and optional posterior columns.",
+      "subtitle": "Combine trajectory assignments with source datasets. Press Esc to exit.",
+      "table_title": "Combine Dataset with Trajectories",
+      "selection_title": "Dataset combination action",
+      "catalog_operation": "data_preprocessing.combine_dataset_with_trajectories.catalog",
+      "run_operation": "data_preprocessing.combine_dataset_with_trajectories.run",
+      "status": "available"
+    },
+    {
+      "id": "clean_dataset",
+      "name": "Clean Dataset",
+      "description": "Clean a dataset with skrub Cleaner and save a new CSV.",
+      "node_summary": "Apply cleaning passes to improve data quality before downstream modelling.",
+      "subtitle": "Clean dataset columns and values with configurable cleaning settings. Press Esc to exit.",
+      "table_title": "Clean Dataset",
+      "selection_title": "Clean dataset action",
+      "catalog_operation": "data_preprocessing.clean_dataset.catalog",
+      "run_operation": "data_preprocessing.clean_dataset.run",
+      "status": "available"
+    },
+    {
+      "id": "missing_imputation",
+      "name": "Missing Imputation",
+      "description": "Impute missing values with e.g. MICE-based strategy.",
+      "node_summary": "Run missing-data imputation workflows for numeric and categorical features.",
+      "subtitle": "Impute missing data using configurable methods. Press Esc to exit.",
+      "table_title": "Missing Imputation",
+      "selection_title": "Missing imputation action",
+      "catalog_operation": "data_preprocessing.missing_imputation.catalog",
+      "run_operation": "data_preprocessing.missing_imputation.run",
+      "status": "available"
+    },
+    {
+      "id": "harmonise_categories",
+      "name": "Harmonise Categories",
+      "description": "Harmonise noisy categorical labels and write a cleaned CSV.",
+      "node_summary": "Deduplicate and standardise inconsistent category labels across columns.",
+      "subtitle": "Harmonise noisy categorical labels. Press Esc to exit.",
+      "table_title": "Harmonise Categories",
+      "selection_title": "Harmonise categories action",
+      "catalog_operation": "data_preprocessing.harmonise_categories.catalog",
+      "run_operation": "data_preprocessing.harmonise_categories.run",
+      "status": "available"
+    },
+    {
+      "id": "show_table",
+      "name": "Show Table",
+      "description": "Display tabular CSV data with a rich report view.",
+      "node_summary": "Inspect dataset previews and tabular summaries interactively.",
+      "subtitle": "Display dataset tabular summaries and previews. Press Esc to exit.",
+      "table_title": "Show Table",
+      "selection_title": "Show table action",
+      "catalog_operation": "data_preprocessing.show_table.catalog",
+      "run_operation": "data_preprocessing.show_table.run",
+      "status": "available"
+    },
+    {
+      "id": "aggregate_long_to_cross_sectional",
+      "name": "Aggregate Long to Cross Sectional",
+      "description": "Aggregate repeated subject rows into one-row-per-subject data.",
+      "node_summary": "Collapse long-format records into cross-sectional features using configurable aggregators.",
+      "subtitle": "Aggregate long-format data to cross-sectional format. Press Esc to exit.",
+      "table_title": "Aggregate Long to Cross Sectional",
+      "selection_title": "Aggregation action",
+      "catalog_operation": "data_preprocessing.aggregate_long_to_cross_sectional.catalog",
+      "run_operation": "data_preprocessing.aggregate_long_to_cross_sectional.run",
+      "status": "available"
+    },
+    {
+      "id": "remove_columns",
+      "name": "Remove Columns",
+      "description": "Drop selected columns from a CSV and write a new CSV.",
+      "node_summary": "Remove one or more columns from a tabular dataset while validating column names and output safety.",
+      "subtitle": "Drop selected columns from a CSV dataset with explicit input and output paths. Press Esc to exit.",
+      "table_title": "Remove Columns",
+      "selection_title": "Remove columns technique",
+      "catalog_operation": "data_preprocessing.remove_columns.catalog",
+      "run_operation": "data_preprocessing.remove_columns.run",
+      "list_command": "list_remove_columns_techniques",
+      "status": "available"
+    },
+    {
+      "id": "rename_feature",
+      "name": "Rename Feature",
+      "description": "Rename one feature in a CSV dataset and write a new output file.",
+      "node_summary": "Apply controlled feature renaming with validation against missing/duplicate names.",
+      "subtitle": "Rename one feature in a CSV dataset. Press Esc to exit.",
+      "table_title": "Rename Feature",
+      "selection_title": "Rename feature action",
+      "catalog_operation": "data_preprocessing.rename_feature.catalog",
+      "run_operation": "data_preprocessing.rename_feature.run",
+      "status": "available"
+    },
+    {
+      "id": "pivot_long_to_wide",
+      "name": "Pivot Long to Wide",
+      "description": "Pivot long-format longitudinal tabular data into wide format.",
+      "node_summary": "Create wide longitudinal tables with configurable id/time/value feature handling.",
+      "subtitle": "Pivot long-format longitudinal data to wide format. Press Esc to exit.",
+      "table_title": "Pivot Long to Wide",
+      "selection_title": "Pivot long to wide action",
+      "catalog_operation": "data_preprocessing.pivot_long_to_wide.catalog",
+      "run_operation": "data_preprocessing.pivot_long_to_wide.run",
+      "status": "available"
+    },
+    {
+      "id": "trajectories_viz",
+      "name": "Trajectories Viz",
+      "description": "Create trajectory visualisations with selectable visualiser types.",
+      "node_summary": "Build class spaghetti, mean profile, and trajectory-size visualisations.",
+      "subtitle": "Create trajectory visualisations for longitudinal outcomes. Press Esc to exit.",
+      "table_title": "Trajectories Viz",
+      "selection_title": "Trajectories visualisation action",
+      "catalog_operation": "data_preprocessing.trajectories_viz.catalog",
+      "run_operation": "data_preprocessing.trajectories_viz.run",
+      "status": "available"
+    }
+  ],
+  "presets": [
+    {
+      "id": "preprocess_mcs_by_leap",
+      "name": "Preprocess MCS by LEAP",
+      "description": "Run the reproducibility preprocessing preset for MCS by LEAP.",
+      "status": "incoming"
+    }
+  ]
+}

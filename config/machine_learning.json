@@ -1,0 +1,87 @@
+{
+  "root_summary": "Choose between machine-learning tools and reproducibility presets.",
+  "tools_summary": "Main machine-learning tools. Select one to configure and run.",
+  "presets_summary": "Browse reproducibility presets for machine learning.",
+  "tools": [
+    {
+      "id": "standard_machine_learning",
+      "name": "Standard Machine Learning",
+      "description": "Train and benchmark cross-sectional estimators for trajectory-based datasets.",
+      "node_summary": "Run standard (cross-sectional) machine-learning estimators, list estimators/metrics, and generate reproducible artifacts.",
+      "subtitle": "Run standard ML workflows on cross-sectional trajectory datasets. Press Esc to exit.",
+      "table_title": "Standard Machine Learning",
+      "selection_title": "Standard machine learning action",
+      "catalog_operation": "machine_learning.standard_machine_learning.catalog",
+      "run_operation": "machine_learning.standard_machine_learning.run",
+      "status": "available"
+    },
+    {
+      "id": "longitudinal_machine_learning",
+      "name": "Longitudinal Machine Learning",
+      "description": "Train and evaluate longitudinal estimators with feature-group vectors.",
+      "node_summary": "Run longitudinal machine-learning estimators and strategy families on wide-format longitudinal datasets.",
+      "subtitle": "Run longitudinal ML workflows on wide-format datasets. Press Esc to exit.",
+      "table_title": "Longitudinal Machine Learning",
+      "selection_title": "Longitudinal machine learning action",
+      "catalog_operation": "machine_learning.longitudinal_machine_learning.catalog",
+      "run_operation": "machine_learning.longitudinal_machine_learning.run",
+      "status": "available"
+    },
+    {
+      "id": "benchmark_standard_ml",
+      "name": "Benchmark Standard ML",
+      "description": "Benchmark standard estimators under one shared protocol.",
+      "node_summary": "Benchmark standard estimators and export ranking/report artifacts with optional reproducibility notebooks.",
+      "subtitle": "Benchmark standard ML estimators under one protocol. Press Esc to exit.",
+      "table_title": "Benchmark Standard ML",
+      "selection_title": "Benchmark standard ML action",
+      "catalog_operation": "machine_learning.benchmark_standard_ml.catalog",
+      "run_operation": "machine_learning.benchmark_standard_ml.run",
+      "status": "available"
+    },
+    {
+      "id": "benchmark_longitudinal_ml",
+      "name": "Benchmark Longitudinal ML",
+      "description": "Benchmark longitudinal estimators under one shared protocol.",
+      "node_summary": "Benchmark longitudinal estimators and export ranking/report artifacts with optional reproducibility notebooks.",
+      "subtitle": "Benchmark longitudinal ML estimators under one protocol. Press Esc to exit.",
+      "table_title": "Benchmark Longitudinal ML",
+      "selection_title": "Benchmark longitudinal ML action",
+      "catalog_operation": "machine_learning.benchmark_longitudinal_ml.catalog",
+      "run_operation": "machine_learning.benchmark_longitudinal_ml.run",
+      "status": "available"
+    },
+    {
+      "id": "bench_standard_and_longitudinal_ml",
+      "name": "Benchmark Standard and Longitudinal ML",
+      "description": "Benchmark standard and longitudinal estimators in one mixed suite.",
+      "node_summary": "Run mixed benchmark workflows across standard and longitudinal estimators with unified ranking artifacts.",
+      "subtitle": "Benchmark standard + longitudinal estimators together. Press Esc to exit.",
+      "table_title": "Benchmark Standard and Longitudinal ML",
+      "selection_title": "Mixed benchmark action",
+      "catalog_operation": "machine_learning.bench_standard_and_longitudinal_ml.catalog",
+      "run_operation": "machine_learning.bench_standard_and_longitudinal_ml.run",
+      "status": "available"
+    },
+    {
+      "id": "shap_analysis",
+      "name": "SHAP Analysis",
+      "description": "Generate SHAP explainability figures and feature-importance artifacts.",
+      "node_summary": "Run SHAP explainability on a saved model artifact and export report/plot assets.",
+      "subtitle": "Generate SHAP explainability artifacts from a saved model and dataset. Press Esc to exit.",
+      "table_title": "SHAP Analysis",
+      "selection_title": "SHAP analysis action",
+      "catalog_operation": "machine_learning.shap_analysis.catalog",
+      "run_operation": "machine_learning.shap_analysis.run",
+      "status": "available"
+    }
+  ],
+  "presets": [
+    {
+      "id": "model_mcs_by_leap",
+      "name": "Model MCS by LEAP",
+      "description": "(incoming) Reproduce LEAP machine-learning experiments for the Millennium Cohort Study.",
+      "status": "incoming"
+    }
+  ]
+}

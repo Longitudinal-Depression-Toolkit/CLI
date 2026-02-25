@@ -1,0 +1,440 @@
+{
+  "entries": [
+    {
+      "label": "Data preparation",
+      "command": [
+        "data_preparation"
+      ],
+      "keywords": [
+        "data preparation",
+        "dataprep",
+        "prepare data",
+        "data_preparation"
+      ]
+    },
+    {
+      "label": "Data preparation tools",
+      "command": [
+        "data_preparation",
+        "tools"
+      ],
+      "keywords": [
+        "tools",
+        "data preparation tools",
+        "preparation tools",
+        "data_preparation tools"
+      ]
+    },
+    {
+      "label": "Data preparation presets",
+      "command": [
+        "data_preparation",
+        "presets"
+      ],
+      "keywords": [
+        "presets",
+        "data preparation presets",
+        "reproducibility presets",
+        "data_preparation presets"
+      ]
+    },
+    {
+      "label": "Synthetic data generation",
+      "command": [
+        "data_preparation",
+        "tools",
+        "synthetic_data_generation"
+      ],
+      "keywords": [
+        "synthetic data generation",
+        "synthetic generation",
+        "synthetic data",
+        "synthetic_data_generation",
+        "generator"
+      ]
+    },
+    {
+      "label": "Data conversion",
+      "command": [
+        "data_preparation",
+        "tools",
+        "data_conversion"
+      ],
+      "keywords": [
+        "data conversion",
+        "conversion",
+        "convert data",
+        "converter",
+        "data_conversion",
+        "list converters"
+      ]
+    },
+    {
+      "label": "Prepare MCS by LEAP",
+      "command": [
+        "data_preparation",
+        "presets",
+        "prepare_mcs_by_leap"
+      ],
+      "keywords": [
+        "prepare mcs by leap",
+        "mcs leap",
+        "prepare_mcs_by_leap",
+        "leap preset"
+      ]
+    },
+    {
+      "label": "Data preprocessing",
+      "command": [
+        "data_preprocessing"
+      ],
+      "keywords": [
+        "data preprocessing",
+        "preprocessing",
+        "data_preprocessing"
+      ]
+    },
+    {
+      "label": "Data preprocessing tools",
+      "command": [
+        "data_preprocessing",
+        "tools"
+      ],
+      "keywords": [
+        "data preprocessing tools",
+        "preprocessing tools",
+        "data_preprocessing tools"
+      ]
+    },
+    {
+      "label": "Data preprocessing presets",
+      "command": [
+        "data_preprocessing",
+        "presets"
+      ],
+      "keywords": [
+        "data preprocessing presets",
+        "preprocessing presets",
+        "data_preprocessing presets"
+      ]
+    },
+    {
+      "label": "Build trajectories",
+      "command": [
+        "data_preprocessing",
+        "tools",
+        "build_trajectories"
+      ],
+      "keywords": [
+        "build trajectories",
+        "trajectory building",
+        "build_trajectories"
+      ]
+    },
+    {
+      "label": "Combine dataset with trajectories",
+      "command": [
+        "data_preprocessing",
+        "tools",
+        "combine_dataset_with_trajectories"
+      ],
+      "keywords": [
+        "combine dataset with trajectories",
+        "combine trajectories",
+        "combine_dataset_with_trajectories"
+      ]
+    },
+    {
+      "label": "Remove columns",
+      "command": [
+        "data_preprocessing",
+        "tools",
+        "remove_columns"
+      ],
+      "keywords": [
+        "remove columns",
+        "drop columns",
+        "columns",
+        "remove_columns",
+        "list remove columns techniques"
+      ]
+    },
+    {
+      "label": "Clean dataset",
+      "command": [
+        "data_preprocessing",
+        "tools",
+        "clean_dataset"
+      ],
+      "keywords": [
+        "clean dataset",
+        "clean_dataset",
+        "dataset cleaning"
+      ]
+    },
+    {
+      "label": "Missing imputation",
+      "command": [
+        "data_preprocessing",
+        "tools",
+        "missing_imputation"
+      ],
+      "keywords": [
+        "missing imputation",
+        "missing data",
+        "missing_imputation"
+      ]
+    },
+    {
+      "label": "Harmonise categories",
+      "command": [
+        "data_preprocessing",
+        "tools",
+        "harmonise_categories"
+      ],
+      "keywords": [
+        "harmonise categories",
+        "harmonize categories",
+        "harmonise_categories"
+      ]
+    },
+    {
+      "label": "Show table",
+      "command": [
+        "data_preprocessing",
+        "tools",
+        "show_table"
+      ],
+      "keywords": [
+        "show table",
+        "table report",
+        "show_table"
+      ]
+    },
+    {
+      "label": "Aggregate long to cross sectional",
+      "command": [
+        "data_preprocessing",
+        "tools",
+        "aggregate_long_to_cross_sectional"
+      ],
+      "keywords": [
+        "aggregate long to cross sectional",
+        "long to cross sectional",
+        "aggregate_long_to_cross_sectional"
+      ]
+    },
+    {
+      "label": "Rename feature",
+      "command": [
+        "data_preprocessing",
+        "tools",
+        "rename_feature"
+      ],
+      "keywords": [
+        "rename feature",
+        "rename column",
+        "rename_feature"
+      ]
+    },
+    {
+      "label": "Pivot long to wide",
+      "command": [
+        "data_preprocessing",
+        "tools",
+        "pivot_long_to_wide"
+      ],
+      "keywords": [
+        "pivot long to wide",
+        "long to wide",
+        "pivot_long_to_wide"
+      ]
+    },
+    {
+      "label": "Trajectories viz",
+      "command": [
+        "data_preprocessing",
+        "tools",
+        "trajectories_viz"
+      ],
+      "keywords": [
+        "trajectories viz",
+        "trajectory visualisation",
+        "trajectories_viz"
+      ]
+    },
+    {
+      "label": "Preprocess MCS by LEAP",
+      "command": [
+        "data_preprocessing",
+        "presets",
+        "preprocess_mcs_by_leap"
+      ],
+      "keywords": [
+        "preprocess mcs by leap",
+        "mcs preprocessing preset",
+        "preprocess_mcs_by_leap"
+      ]
+    },
+    {
+      "label": "Machine learning",
+      "command": [
+        "machine_learning"
+      ],
+      "keywords": [
+        "machine learning",
+        "ml",
+        "machine_learning"
+      ]
+    },
+    {
+      "label": "Machine learning tools",
+      "command": [
+        "machine_learning",
+        "tools"
+      ],
+      "keywords": [
+        "machine learning tools",
+        "ml tools",
+        "machine_learning tools"
+      ]
+    },
+    {
+      "label": "Machine learning presets",
+      "command": [
+        "machine_learning",
+        "presets"
+      ],
+      "keywords": [
+        "machine learning presets",
+        "ml presets",
+        "machine_learning presets"
+      ]
+    },
+    {
+      "label": "Standard machine learning",
+      "command": [
+        "machine_learning",
+        "tools",
+        "standard_machine_learning"
+      ],
+      "keywords": [
+        "standard machine learning",
+        "standard ml",
+        "standard_machine_learning"
+      ]
+    },
+    {
+      "label": "Longitudinal machine learning",
+      "command": [
+        "machine_learning",
+        "tools",
+        "longitudinal_machine_learning"
+      ],
+      "keywords": [
+        "longitudinal machine learning",
+        "longitudinal ml",
+        "longitudinal_machine_learning"
+      ]
+    },
+    {
+      "label": "Benchmark standard ml",
+      "command": [
+        "machine_learning",
+        "tools",
+        "benchmark_standard_ml"
+      ],
+      "keywords": [
+        "benchmark standard ml",
+        "standard ml benchmark",
+        "benchmark_standard_ml"
+      ]
+    },
+    {
+      "label": "Benchmark longitudinal ml",
+      "command": [
+        "machine_learning",
+        "tools",
+        "benchmark_longitudinal_ml"
+      ],
+      "keywords": [
+        "benchmark longitudinal ml",
+        "longitudinal ml benchmark",
+        "benchmark_longitudinal_ml"
+      ]
+    },
+    {
+      "label": "Benchmark standard and longitudinal ml",
+      "command": [
+        "machine_learning",
+        "tools",
+        "bench_standard_and_longitudinal_ml"
+      ],
+      "keywords": [
+        "benchmark standard and longitudinal ml",
+        "mixed benchmark",
+        "bench_standard_and_longitudinal_ml"
+      ]
+    },
+    {
+      "label": "Shap analysis",
+      "command": [
+        "machine_learning",
+        "tools",
+        "shap_analysis"
+      ],
+      "keywords": [
+        "shap analysis",
+        "model explainability",
+        "shap_analysis"
+      ]
+    },
+    {
+      "label": "Model mcs by leap",
+      "command": [
+        "machine_learning",
+        "presets",
+        "model_mcs_by_leap"
+      ],
+      "keywords": [
+        "model mcs by leap",
+        "mcs ml preset",
+        "model_mcs_by_leap"
+      ]
+    },
+    {
+      "label": "Toolkit tutorial",
+      "command": [
+        "toolkit_tutorial"
+      ],
+      "keywords": [
+        "toolkit tutorial",
+        "tutorial",
+        "toolkit_tutorial"
+      ]
+    },
+    {
+      "label": "List authors",
+      "command": [
+        "list_authors"
+      ],
+      "keywords": [
+        "list authors",
+        "authors",
+        "list_authors"
+      ]
+    },
+    {
+      "label": "List inspiration from",
+      "command": [
+        "list_inspiration_from"
+      ],
+      "keywords": [
+        "list inspiration from",
+        "inspiration",
+        "papers",
+        "list_inspiration_from"
+      ]
+    }
+  ]
+}
