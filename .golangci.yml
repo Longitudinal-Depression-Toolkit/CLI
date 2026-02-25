@@ -1,0 +1,21 @@
+run:
+  timeout: 5m
+
+linters:
+  disable-all: true
+  enable:
+    - errcheck
+    - govet
+    - ineffassign
+    - staticcheck
+    - unused
+
+issues:
+  exclude-rules:
+    - path: internal/shared/asciimotion/header.go
+      linters:
+        - errcheck
+        - govet
+        - ineffassign
+        - staticcheck
+        - unused
