@@ -25,7 +25,8 @@ The initiative delivers two interconnected components. First, `ldt-toolkit` is t
 
 The toolset supports two broad lines of exploration. `Playground` methods help researchers iterate quickly on datasets across data preparation, data preprocessing, and machine learning phases. `Presets` provide stage-level reproducible pipelines for specific studies and are built to grow through community contributions.
 
-This current repository is the CLI component of the project. For the full end-to-end toolkit experience, workflows, and primary documentation, use [`ldt-toolkit`](https://github.com/Longitudinal-Depression-Toolkit/ldt-toolkit).
+> [!CAUTION]
+> This current repository is the CLI component of the project. For the full end-to-end toolkit experience, workflows, and primary documentation, use ldt-toolkit.
 
 ## <img src="public/icons/lucide/terminal.svg" width="32" alt="" /> Setup & Launch
 

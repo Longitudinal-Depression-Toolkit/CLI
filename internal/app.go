@@ -938,7 +938,6 @@ type bridgeExecutionModel struct {
 	operation string
 	stopwatch stopwatch.Model
 	waitHint  components.RotatingHint
-	hintOn    bool
 	doneCh    <-chan bridgeExecutionDoneMsg
 	result    *bridgeExecutionDoneMsg
 }
@@ -1111,6 +1110,7 @@ func newBridgeExecutionModel(
 func (m bridgeExecutionModel) Init() tea.Cmd {
 	return tea.Batch(
 		m.stopwatch.Init(),
+		m.waitHint.Reset(),
 		waitBridgeExecutionCmd(m.doneCh),
 	)
 }
@@ -1125,18 +1125,8 @@ func (m bridgeExecutionModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	var stopwatchCmd tea.Cmd
 	m.stopwatch, stopwatchCmd = m.stopwatch.Update(msg)
 
-	var hintCmd tea.Cmd
-	if m.hintOn {
-		_, hintCmd = m.waitHint.Update(msg)
-	}
-
-	var activateHintCmd tea.Cmd
-	if !m.hintOn && m.stopwatch.Elapsed() > bridgeHintDelay {
-		m.hintOn = true
-		activateHintCmd = m.waitHint.Reset()
-	}
-
-	return m, tea.Batch(stopwatchCmd, hintCmd, activateHintCmd)
+	_, hintCmd := m.waitHint.Update(msg)
+	return m, tea.Batch(stopwatchCmd, hintCmd)
 }
 
 func (m bridgeExecutionModel) View() string {
@@ -1145,7 +1135,7 @@ func (m bridgeExecutionModel) View() string {
 		action = "bridge operation"
 	}
 	waitMessage := "Please wait..."
-	if m.hintOn {
+	if m.stopwatch.Elapsed() > bridgeHintDelay {
 		if hint := strings.TrimSpace(m.waitHint.Display()); hint != "" {
 			waitMessage = hint
 		}
