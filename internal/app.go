@@ -35,6 +35,7 @@ const (
 	bridgeRunnerCommand   = "ldt-bridge"
 	bridgeRunnerModule    = "ldt.bridge.runner"
 	installationHelpHint  = "Run from a project directory containing pyproject.toml with `uv add ldt-toolkit`, then retry."
+	bridgeHintDelay       = 9 * time.Second
 	homeTabLabel          = "Home"
 	contentPanelMinWidth  = 64
 	contentPanelMinHeight = 12
@@ -46,6 +47,14 @@ var (
 	inNavigatorSession  bool
 	ansiEscapePattern   = regexp.MustCompile(`\x1b\[[0-9;]*m`)
 	activeBridgeRuntime bridgeRuntime
+	bridgeWaitHints     = []string{
+		"Please wait, Python is slow the first time it imports required packages...",
+		"Please wait, warming up the runtime...",
+		"Please wait, still loading dependencies...",
+		"Please wait, nearly there!",
+		"Please wait, finishing up...",
+		"Please wait, just a moment longer...",
+	}
 )
 
 type commandDef = model.CommandDef
@@ -928,6 +937,8 @@ type bridgeExecutionDoneMsg struct {
 type bridgeExecutionModel struct {
 	operation string
 	stopwatch stopwatch.Model
+	waitHint  components.RotatingHint
+	hintOn    bool
 	doneCh    <-chan bridgeExecutionDoneMsg
 	result    *bridgeExecutionDoneMsg
 }
@@ -1088,9 +1099,11 @@ func newBridgeExecutionModel(
 	doneCh <-chan bridgeExecutionDoneMsg,
 ) bridgeExecutionModel {
 	sw := stopwatch.NewWithInterval(time.Second)
+	hint := components.NewRotatingHint(bridgeWaitHints)
 	return bridgeExecutionModel{
 		operation: operation,
 		stopwatch: sw,
+		waitHint:  hint,
 		doneCh:    doneCh,
 	}
 }
@@ -1109,9 +1122,21 @@ func (m bridgeExecutionModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		return m, tea.Quit
 	}
 
-	var cmd tea.Cmd
-	m.stopwatch, cmd = m.stopwatch.Update(msg)
-	return m, cmd
+	var stopwatchCmd tea.Cmd
+	m.stopwatch, stopwatchCmd = m.stopwatch.Update(msg)
+
+	var hintCmd tea.Cmd
+	if m.hintOn {
+		_, hintCmd = m.waitHint.Update(msg)
+	}
+
+	var activateHintCmd tea.Cmd
+	if !m.hintOn && m.stopwatch.Elapsed() > bridgeHintDelay {
+		m.hintOn = true
+		activateHintCmd = m.waitHint.Reset()
+	}
+
+	return m, tea.Batch(stopwatchCmd, hintCmd, activateHintCmd)
 }
 
 func (m bridgeExecutionModel) View() string {
@@ -1119,12 +1144,18 @@ func (m bridgeExecutionModel) View() string {
 	if action == "" {
 		action = "bridge operation"
 	}
+	waitMessage := "Please wait..."
+	if m.hintOn {
+		if hint := strings.TrimSpace(m.waitHint.Display()); hint != "" {
+			waitMessage = hint
+		}
+	}
 	content := lipgloss.JoinVertical(
 		lipgloss.Left,
 		"",
 		theme.App.SubtitleStyle().Render(fmt.Sprintf("Running %s", action)),
 		theme.App.TextStyle().Render(fmt.Sprintf("Elapsed: %s", m.stopwatch.View())),
-		theme.App.MutedTextStyle().Render("Please wait..."),
+		theme.App.MutedTextStyle().Render(waitMessage),
 		"",
 	)
 	return components.ApplyLeftLayoutMargin(content)
