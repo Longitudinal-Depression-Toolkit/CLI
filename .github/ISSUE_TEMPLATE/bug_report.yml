@@ -1,0 +1,94 @@
+name: "Bug Report"
+description: Report a bug in the ldt CLI runtime, navigation flow, or command execution bridge.
+title: "[BUG] <title>"
+labels:
+  - bug
+assignees:
+  - simonprovost
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for CLI runtime defects, broken flows, display issues, or bridge execution errors.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I reproduced this with the latest `ldt` binary from this repository.
+          required: true
+        - label: I checked existing open issues first.
+          required: true
+        - label: I am not sharing restricted participant-level data in this issue.
+          required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe the bug and what is broken.
+      placeholder: Explain the observed behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      description: Include exact keys/actions and command path when relevant.
+      value: |
+        1. Launch `ldt`
+        2. Navigate to ...
+        3. Press ...
+        4. Observe ...
+      render: bash
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      placeholder: What should have happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Error output or logs
+      description: Paste terminal output if available.
+      render: text
+    validations:
+      required: false
+  - type: dropdown
+    id: screen
+    attributes:
+      label: Affected area
+      options:
+        - Home
+        - Data Preparation
+        - Data Preprocessing
+        - Machine Learning
+        - Command Palette
+        - Bridge execution
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: Operating system
+      placeholder: e.g., macOS 15.3, Ubuntu 24.04
+    validations:
+      required: true
+  - type: input
+    id: go-version
+    attributes:
+      label: Go version
+      placeholder: e.g., go1.25.0
+    validations:
+      required: false
+  - type: input
+    id: python-version
+    attributes:
+      label: Python version for bridge runtime
+      placeholder: e.g., 3.12.2
+    validations:
+      required: false

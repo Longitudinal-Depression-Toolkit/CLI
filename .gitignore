@@ -1,0 +1,17 @@
+# Build artifacts
+ldt
+*.exe
+*.dll
+*.so
+*.dylib
+*.test
+
+# Release artifacts
+dist/
+
+# Runtime cache/tmp
+tmp/command_palette_history.json
+
+# Editor
+.idea/
+.DS_Store

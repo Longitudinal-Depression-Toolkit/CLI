@@ -1,0 +1,52 @@
+name: "Ask A Question"
+description: Ask about CLI usage, navigation behavior, configuration, or release/distribution.
+title: "[QUESTION] <title>"
+labels:
+  - question
+assignees:
+  - simonprovost
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Ask a CLI-specific question here.
+        For end-user toolkit workflows, start from `ldt-toolkit` docs and then link back here if the issue is CLI-specific.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I checked README guidance in this repository.
+          required: true
+        - label: I searched existing issues for similar questions.
+          required: true
+  - type: dropdown
+    id: topic
+    attributes:
+      label: Question topic
+      options:
+        - Installation and setup
+        - Interactive navigation
+        - Command palette
+        - Stage tools and presets
+        - Release and package managers
+        - Contributing
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+      description: State the question clearly and include what you already tried.
+      placeholder: What are you trying to do, and where are you blocked?
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Optional background (screenshots, logs, snippets, links).
+      placeholder: Add relevant details that will help maintainers answer quickly.
+    validations:
+      required: false

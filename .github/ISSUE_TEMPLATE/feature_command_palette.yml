@@ -1,0 +1,78 @@
+name: "Feature Request: Command Palette"
+description: Propose enhancements to palette resolution, autocomplete, history, or keyboard UX.
+title: "[FEAT][COMMAND_PALETTE] <title>"
+labels:
+  - feature
+  - stage:command_palette
+assignees:
+  - simonprovost
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for command palette behavior:
+        alias matching, ranking, autocomplete, history persistence, shortcuts, and configuration.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I reviewed `config/command_palette.json` and existing aliases first.
+          required: true
+        - label: I can provide concrete input examples and expected resolved command paths.
+          required: true
+  - type: dropdown
+    id: request-type
+    attributes:
+      label: Request type
+      options:
+        - Add command alias/entry
+        - Improve fuzzy matching or ranking
+        - Improve autocomplete suggestions
+        - Improve command history behavior
+        - Improve keyboard shortcuts and palette UX
+        - Improve error messages and guidance
+    validations:
+      required: true
+  - type: textarea
+    id: user-flow
+    attributes:
+      label: User flow
+      description: Describe user intent and current friction.
+      placeholder: What does the user type and what currently happens?
+    validations:
+      required: true
+  - type: textarea
+    id: io-examples
+    attributes:
+      label: Input/output examples
+      description: Provide exact text inputs and expected resolved commands.
+      placeholder: |
+        Input: "build traj"
+        Expected: data_preprocessing tools build_trajectories
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: Explain matching, selection, and history/autocomplete expectations.
+      placeholder: Include acceptance behavior for ambiguous and invalid input.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: List concrete checks for completion.
+      placeholder: Include keyboard interaction checks (Tab, Ctrl+H, Enter, Esc).
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes:
+      label: Additional notes
+      description: Optional references or implementation hints.
+      placeholder: Optional.
+    validations:
+      required: false

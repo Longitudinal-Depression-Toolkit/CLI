@@ -1,0 +1,39 @@
+{
+  "root_summary": "Choose between preparation tools and reproducibility presets.",
+  "tools_summary": "Main data preparation tools. Select one to configure and run.",
+  "presets_summary": "Browse reproducibility presets for data preparation.",
+  "tools": [
+    {
+      "id": "synthetic_data_generation",
+      "name": "Synthetic Data Generation",
+      "description": "Generate synthetic longitudinal datasets.",
+      "node_summary": "Design and generate synthetic longitudinal datasets with controlled trajectory patterns, shocks, changepoints, missingness, and harmonisation challenges.",
+      "subtitle": "Build controlled synthetic longitudinal datasets for benchmarking and exploratory workflows. Press Esc to exit.",
+      "table_title": "Synthetic Data Generation",
+      "selection_title": "Synthetic data generation technique",
+      "catalog_operation": "data_preparation.synthetic_data_generation.catalog",
+      "run_operation": "data_preparation.synthetic_data_generation.run",
+      "list_command": "list_synthetic_data_generators"
+    },
+    {
+      "id": "data_conversion",
+      "name": "Data Conversion",
+      "description": "Convert cohort files across CSV, Parquet, and Stata formats.",
+      "node_summary": "Convert datasets between CSV, Parquet, and Stata formats in single-file or folder modes while keeping conversion settings explicit.",
+      "subtitle": "Convert cohort files between CSV, Parquet, and Stata in single-file or folder modes. Press Esc to exit.",
+      "table_title": "Data Conversion",
+      "selection_title": "Data conversion technique",
+      "catalog_operation": "data_preparation.data_conversion.catalog",
+      "run_operation": "data_preparation.data_conversion.run",
+      "list_command": "list_converters"
+    }
+  ],
+  "presets": [
+    {
+      "id": "prepare_mcs_by_leap",
+      "name": "Prepare MCS by LEAP",
+      "description": "Run the five-stage MCS preset with guided path and output prompts.",
+      "status": "available"
+    }
+  ]
+}
