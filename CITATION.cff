@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If you use this repository, please cite it as below."
 title: "Longitudinal Depression Trajectories CLI: Interactive No-Code Terminal Interface"
 type: software
-version: "0.0.1"
+version: "0.0.7"
 year: 2026
 authors:
   - family-names: Provost
