@@ -42,7 +42,7 @@
     {
       "id": "missing_imputation",
       "name": "Missing Imputation",
-      "description": "Impute missing values with e.g. MICE-based strategy.",
+      "description": "Impute missing values with standard and model-based strategies.",
       "node_summary": "Run missing-data imputation workflows for numeric and categorical features.",
       "subtitle": "Impute missing data using configurable methods. Press Esc to exit.",
       "table_title": "Missing Imputation",

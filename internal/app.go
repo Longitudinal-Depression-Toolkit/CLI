@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"math/rand"
 	"os"
 	"os/exec"
 	"regexp"
@@ -49,12 +50,46 @@ var (
 	ansiEscapePattern   = regexp.MustCompile(`\x1b\[[0-9;]*m`)
 	activeBridgeRuntime bridgeRuntime
 	bridgeWaitHints     = []string{
-		"Please wait, Python is slow the first time it imports required packages...",
-		"Please wait, warming up the runtime...",
-		"Please wait, still loading dependencies...",
-		"Please wait, nearly there!",
-		"Please wait, finishing up...",
-		"Please wait, just a moment longer...",
+		"Please wait, Python is choosing readability over raw speed...",
+		"Please wait, the interpreter is stretching before the next sprint...",
+		"Please wait, aligning the whitespace and the stars...",
+		"Please wait, convincing a list comprehension to behave...",
+		"Please wait, untangling a particularly ambitious import...",
+		"Please wait, teaching a stubborn object some duck typing...",
+		"Please wait, asking the traceback to stay hypothetical...",
+		"Please wait, giving the interpreter a polite cup of tea...",
+		"Please wait, coaxing a few determined dictionaries into order...",
+		"Please wait, translating caffeine into Pythonic outcomes...",
+		"Please wait, checking whether the snake is feeling speedy today...",
+		"Please wait, letting the runtime find its happy path...",
+		"Please wait, smoothing out a couple of curly thoughts...",
+		"Please wait, persuading the bytes to become useful...",
+		"Please wait, keeping the semicolons safely unemployed...",
+		"Please wait, unrolling a loop with respectable enthusiasm...",
+		"Please wait, asking the variables to use their inside voices...",
+		"Please wait, nudging the interpreter toward a neat result...",
+		"Please wait, making room for one more elegant workaround...",
+		"Please wait, helping the stack stay calm and carry on...",
+		"Please wait, lining up some fresh Pythonic goodness...",
+		"Please wait, converting mild chaos into structured output...",
+		"Please wait, making sure the runtime feels seen and appreciated...",
+		"Please wait, giving the globals a minute to reflect...",
+		"Please wait, reminding the locals that this is a team effort...",
+		"Please wait, letting the bits and bytes sort out their differences...",
+		"Please wait, negotiating a peaceful treaty between tabs and spaces...",
+		"Please wait, doing something clever with parentheses...",
+		"Please wait, waiting for the interpreter to finish its dramatic pause...",
+		"Please wait, holding the door for a very thoughtful function...",
+		"Please wait, making the output slightly more handsome...",
+		"Please wait, carefully herding a small flock of iterables...",
+		"Please wait, asking a lambda to keep this brief...",
+		"Please wait, helping the modules introduce themselves properly...",
+		"Please wait, letting Python assemble a tidy little answer...",
+		"Please wait, checking the result twice for extra niceness...",
+		"Please wait, whispering encouraging words to the event loop...",
+		"Please wait, waiting for the final `print(\"done\")` energy...",
+		"Please wait, keeping the exception handlers on standby...",
+		"Please wait, one more pass and the snake should be smiling...",
 	}
 )
 
@@ -936,10 +971,11 @@ type bridgeExecutionDoneMsg struct {
 }
 
 type bridgeExecutionModel struct {
-	operation string
-	stopwatch stopwatch.Model
-	doneCh    <-chan bridgeExecutionDoneMsg
-	result    *bridgeExecutionDoneMsg
+	operation      string
+	stopwatch      stopwatch.Model
+	doneCh         <-chan bridgeExecutionDoneMsg
+	result         *bridgeExecutionDoneMsg
+	waitHintOffset int
 }
 
 func runBridgeOperationForPath(path []string) (bool, error) {
@@ -1099,9 +1135,10 @@ func newBridgeExecutionModel(
 ) *bridgeExecutionModel {
 	sw := stopwatch.NewWithInterval(time.Second)
 	return &bridgeExecutionModel{
-		operation: operation,
-		stopwatch: sw,
-		doneCh:    doneCh,
+		operation:      operation,
+		stopwatch:      sw,
+		doneCh:         doneCh,
+		waitHintOffset: newBridgeWaitHintOffset(),
 	}
 }
 
@@ -1129,7 +1166,7 @@ func (m *bridgeExecutionModel) View() string {
 	if action == "" {
 		action = "bridge operation"
 	}
-	waitMessage := bridgeWaitStatusMessage(m.stopwatch.Elapsed())
+	waitMessage := bridgeWaitStatusMessage(m.stopwatch.Elapsed(), m.waitHintOffset)
 	content := lipgloss.JoinVertical(
 		lipgloss.Left,
 		"",
@@ -1141,7 +1178,7 @@ func (m *bridgeExecutionModel) View() string {
 	return components.ApplyLeftLayoutMargin(content)
 }
 
-func bridgeWaitStatusMessage(elapsed time.Duration) string {
+func bridgeWaitStatusMessage(elapsed time.Duration, startIndex int) string {
 	const defaultMessage = "Please wait..."
 
 	if elapsed <= bridgeHintDelay || len(bridgeWaitHints) == 0 {
@@ -1157,7 +1194,26 @@ func bridgeWaitStatusMessage(elapsed time.Duration) string {
 	if index < 0 {
 		return defaultMessage
 	}
-	return bridgeWaitHints[index%len(bridgeWaitHints)]
+
+	if startIndex < 0 {
+		startIndex = 0
+	}
+	startIndex %= len(bridgeWaitHints)
+
+	return bridgeWaitHints[(startIndex+index)%len(bridgeWaitHints)]
+}
+
+func newBridgeWaitHintOffset() int {
+	if len(bridgeWaitHints) < 2 {
+		return 0
+	}
+
+	seed := time.Now().UnixNano()
+	if seed == 0 {
+		seed = 1
+	}
+
+	return rand.New(rand.NewSource(seed)).Intn(len(bridgeWaitHints))
 }
 
 func waitBridgeExecutionCmd(doneCh <-chan bridgeExecutionDoneMsg) tea.Cmd {
