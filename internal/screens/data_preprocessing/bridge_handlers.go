@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"strings"
 
+	presetsmodule "ldt-toolkit-cli/internal/screens/data_preprocessing/presets"
 	"ldt-toolkit-cli/internal/shared/components"
 	"ldt-toolkit-cli/internal/shared/model"
 	"ldt-toolkit-cli/internal/shared/theme"
@@ -65,12 +66,16 @@ func renderDataPreprocessingHelp(canonical []string) error {
 	}
 
 	if len(canonical) >= 2 && canonical[1] == "presets" {
+		presets, err := presetsForDisplay()
+		if err != nil {
+			return err
+		}
 		components.PrintBlankLine()
 		components.PrintLine(theme.App.SubtitleStyle().Render("Data preprocessing presets"))
 		components.PrintLine(theme.App.MutedTextStyle().Render(cfg.PresetsSummary))
 		components.PrintBlankLine()
-		for _, preset := range Presets() {
-			line := fmt.Sprintf("- %s: %s [%s]", preset.Name, preset.Description, PresetStatusLabel(preset))
+		for _, preset := range presets {
+			line := fmt.Sprintf("- %s: %s [%s]", preset.Name, preset.Description, presetsmodule.StatusLabel(preset))
 			components.PrintLine(line)
 		}
 		return nil
@@ -124,14 +129,18 @@ func LoadNode(path []string) (*parsedHelp, bool, error) {
 		), true, nil
 
 	case len(canonical) == 2 && canonical[1] == "presets":
-		commands := make([]commandDef, 0, len(Presets()))
-		for _, preset := range Presets() {
+		presets, err := presetsForDisplay()
+		if err != nil {
+			return nil, true, err
+		}
+		commands := make([]commandDef, 0, len(presets))
+		for _, preset := range presets {
 			description := strings.TrimSpace(preset.Description)
 			if description == "" {
 				description = strings.TrimSpace(preset.Name)
 			}
-			if !PresetIsRunnable(preset) {
-				description = strings.TrimSpace(description + " [" + PresetStatusLabel(preset) + "]")
+			if !presetsmodule.IsRunnable(preset) {
+				description = strings.TrimSpace(description + " [" + presetsmodule.StatusLabel(preset) + "]")
 			}
 			commands = append(commands, commandDef{
 				Name:        preset.ID,
@@ -145,7 +154,11 @@ func LoadNode(path []string) (*parsedHelp, bool, error) {
 		), true, nil
 
 	case len(canonical) == 3 && canonical[1] == "presets":
-		if preset, ok := PresetByID(canonical[2]); ok {
+		preset, ok, err := presetByIDForDisplay(canonical[2])
+		if err != nil {
+			return nil, true, err
+		}
+		if ok {
 			return newNode(
 				strings.TrimSpace(preset.Description),
 				nil,

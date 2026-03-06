@@ -18,8 +18,8 @@
     {
       "id": "longitudinal_machine_learning",
       "name": "Longitudinal Machine Learning",
-      "description": "Train and evaluate longitudinal estimators with feature-group vectors.",
-      "node_summary": "Run longitudinal machine-learning estimators and strategy families on wide-format longitudinal datasets.",
+      "description": "Train and evaluate longitudinal estimators with preset, suffix-inferred, or manual feature-group setup.",
+      "node_summary": "Run longitudinal machine-learning estimators on wide-format datasets with flexible feature-group and non-longitudinal feature selection.",
       "subtitle": "Run longitudinal ML workflows on wide-format datasets. Press Esc to exit.",
       "table_title": "Longitudinal Machine Learning",
       "selection_title": "Longitudinal machine learning action",
@@ -42,8 +42,8 @@
     {
       "id": "benchmark_longitudinal_ml",
       "name": "Benchmark Longitudinal ML",
-      "description": "Benchmark longitudinal estimators under one shared protocol.",
-      "node_summary": "Benchmark longitudinal estimators and export ranking/report artifacts with optional reproducibility notebooks.",
+      "description": "Benchmark longitudinal estimators with preset, suffix-inferred, or manual feature-group setup.",
+      "node_summary": "Benchmark longitudinal estimators and export ranking/report artifacts using flexible feature-group and non-longitudinal feature selection.",
       "subtitle": "Benchmark longitudinal ML estimators under one protocol. Press Esc to exit.",
       "table_title": "Benchmark Longitudinal ML",
       "selection_title": "Benchmark longitudinal ML action",
@@ -54,8 +54,8 @@
     {
       "id": "bench_standard_and_longitudinal_ml",
       "name": "Benchmark Standard and Longitudinal ML",
-      "description": "Benchmark standard and longitudinal estimators in one mixed suite.",
-      "node_summary": "Run mixed benchmark workflows across standard and longitudinal estimators with unified ranking artifacts.",
+      "description": "Benchmark standard and longitudinal estimators in one mixed suite, including flexible longitudinal feature-group setup.",
+      "node_summary": "Run mixed benchmark workflows across standard and longitudinal estimators with unified ranking artifacts and flexible longitudinal grouping.",
       "subtitle": "Benchmark standard + longitudinal estimators together. Press Esc to exit.",
       "table_title": "Benchmark Standard and Longitudinal ML",
       "selection_title": "Mixed benchmark action",

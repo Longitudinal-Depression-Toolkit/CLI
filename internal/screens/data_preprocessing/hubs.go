@@ -89,7 +89,10 @@ func runDataPreprocessingToolsHub() error {
 }
 
 func runDataPreprocessingPresetsHub() error {
-	presets := Presets()
+	presets, err := presetsForDisplay()
+	if err != nil {
+		return err
+	}
 	if len(presets) == 0 {
 		return errors.New("no data preprocessing presets were found")
 	}
@@ -100,9 +103,9 @@ func runDataPreprocessingPresetsHub() error {
 		if label == "" {
 			label = "Unnamed preset"
 		}
-		if !PresetIsRunnable(preset) {
+		if !presetsmodule.IsRunnable(preset) {
 			label = theme.App.MutedTextStyle().Render(
-				fmt.Sprintf("%s (%s)", label, PresetStatusLabel(preset)),
+				fmt.Sprintf("%s (%s)", label, presetsmodule.StatusLabel(preset)),
 			)
 		}
 		options = append(options, huh.NewOption(label, preset.ID))
@@ -129,18 +132,19 @@ func runDataPreprocessingPresetsHub() error {
 }
 
 func runDataPreprocessingPresetFlowByID(presetID string) error {
-	preset, ok := PresetByID(presetID)
+	preset, ok, err := presetByIDForDisplay(presetID)
+	if err != nil {
+		return err
+	}
 	if !ok {
 		return fmt.Errorf("unknown data preprocessing preset: %s", strings.TrimSpace(presetID))
 	}
 	return presetsmodule.Run(
-		presetsmodule.Preset{
-			ID:          preset.ID,
-			Name:        preset.Name,
-			Description: preset.Description,
-			Status:      preset.Status,
-		},
+		preset,
 		presetsmodule.Runtime{
+			Execute: func(operation string, params map[string]any) (map[string]any, error) {
+				return executeBridge(operation, params)
+			},
 			InNavigator: currentNavigatorState,
 		},
 	)
